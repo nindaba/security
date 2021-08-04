@@ -1,6 +1,6 @@
-package com.yadlings.security.Controllers.Repository;
+package com.yadlings.security.Repository;
 
-import com.yadlings.security.Controllers.Domain.User;
+import com.yadlings.security.Domain.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

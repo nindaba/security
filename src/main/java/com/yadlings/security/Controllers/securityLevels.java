@@ -1,5 +1,7 @@
 package com.yadlings.security.Controllers;
 
+import com.yadlings.security.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -12,17 +14,24 @@ public class securityLevels {
     @RestController
     @RequestMapping("/v1")
     class versionOne{
+        @Autowired
+        private UserService userService;
         @GetMapping("/l1")
         public ResponseEntity<?> levelOne(){
             return new ResponseEntity<>("Level One of V1", HttpStatus.OK);
         }
-        @GetMapping("/l2")
+        @GetMapping("/delete")
         public ResponseEntity<?> levelTwo(){
-            return new ResponseEntity<>("Level Two of V1", HttpStatus.OK);
+            return new ResponseEntity<>(userService.delete(), HttpStatus.OK);
         }
-        @GetMapping("/l3")
+        @GetMapping("/retrieve")
         public ResponseEntity<?> levelThree(){
-            return new ResponseEntity<>("Level Three of V1", HttpStatus.OK);
+            return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
+        }
+        @GetMapping("/save")
+        public ResponseEntity<?> levelFour(){
+            userService.initializeUsers();
+            return new ResponseEntity<>("Saved", HttpStatus.OK);
         }
     }
     @RestController

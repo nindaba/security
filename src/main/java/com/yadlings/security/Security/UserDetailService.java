@@ -1,7 +1,7 @@
-package com.yadlings.security.Controllers.Security;
+package com.yadlings.security.Security;
 
-import com.yadlings.security.Controllers.Domain.User;
-import com.yadlings.security.Controllers.Repository.UserRepository;
+import com.yadlings.security.Domain.User;
+import com.yadlings.security.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -1,9 +1,8 @@
-package com.yadlings.security.Controllers.Services;
+package com.yadlings.security.Services;
 
-import com.yadlings.security.Controllers.Domain.User;
-import com.yadlings.security.Controllers.Repository.UserRepository;
+import com.yadlings.security.Domain.User;
+import com.yadlings.security.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +14,21 @@ import java.util.UUID;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
-    @Bean
+//    @Bean
     public void initializeUsers(){
         List<User> users = Arrays.asList(
                 new User(UUID.randomUUID().toString(), "A", "B", "ab", new BCryptPasswordEncoder().encode("ab12"), false),
                 new User(UUID.randomUUID().toString(), "C", "D", "cd", new BCryptPasswordEncoder().encode("cd12"), true)
         );
         userRepository.saveAll(users);
+    }
+
+    public List getUsers() {
+        return userRepository.findAll();
+    }
+
+    public Boolean delete() {
+        userRepository.deleteAll();
+        return true;
     }
 }
